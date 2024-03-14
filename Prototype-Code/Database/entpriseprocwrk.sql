@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2024 at 03:01 PM
+-- Generation Time: Mar 14, 2024 at 11:07 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,16 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alert_data`
+-- Table structure for table `alerts`
 --
 
-CREATE TABLE `alert_data` (
-  `Alert_ID` int(11) NOT NULL,
-  `Type` varchar(255) DEFAULT NULL,
-  `Product_ID` int(11) DEFAULT NULL,
-  `Date_Time` datetime DEFAULT NULL,
-  `Recipient_ID` varchar(255) DEFAULT NULL,
-  `Alert_Sent_Time` datetime DEFAULT NULL
+CREATE TABLE `alerts` (
+  `productName` varchar(255) DEFAULT NULL,
+  `productCode` varchar(50) DEFAULT NULL,
+  `skuCode` varchar(50) DEFAULT NULL,
+  `productImage` blob DEFAULT NULL,
+  `productDescription` text DEFAULT NULL,
+  `productQuantity` int(11) DEFAULT NULL,
+  `alertType` varchar(50) DEFAULT NULL,
+  `bestBeforeDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -67,53 +69,20 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_data`
+-- Table structure for table `products`
 --
 
-CREATE TABLE `order_data` (
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `date_ordered` datetime NOT NULL,
-  `status` varchar(50) NOT NULL
+CREATE TABLE `products` (
+  `productName` varchar(255) DEFAULT NULL,
+  `productCode` varchar(50) DEFAULT NULL,
+  `skuCode` varchar(50) DEFAULT NULL,
+  `productImage` blob DEFAULT NULL,
+  `productDescription` text DEFAULT NULL,
+  `productQuantity` int(11) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `bestBeforeDate` date DEFAULT NULL,
+  `orderStatus` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `order_data`
---
-
-INSERT INTO `order_data` (`order_id`, `product_id`, `quantity`, `date_ordered`, `status`) VALUES
-(1, 101, 2, '2024-03-10 10:00:00', 'ordered'),
-(2, 102, 1, '2024-03-11 11:30:00', 'shipped'),
-(3, 103, 3, '2024-03-12 12:45:00', 'delivered');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_data`
---
-
-CREATE TABLE `product_data` (
-  `product_id` int(11) NOT NULL,
-  `sku_code` varchar(50) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `shelf_life` date NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `bbd` datetime DEFAULT NULL,
-  `product_image` varchar(255) DEFAULT NULL,
-  `product_price` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `product_data`
---
-
-INSERT INTO `product_data` (`product_id`, `sku_code`, `name`, `description`, `shelf_life`, `quantity`, `bbd`, `product_image`, `product_price`) VALUES
-(1, 'SKU001', 'Chocolate Chip Cookies', 'Delicious chocolate chip cookies made with premium ingredients.', '2024-12-31', 100, '2024-12-31 23:59:59', NULL, NULL),
-(2, 'SKU002', 'Crunchy Peanut Butter', 'All-natural crunchy peanut butter with no added sugars or preservatives.', '2024-12-31', 50, '2024-12-31 23:59:59', NULL, NULL),
-(3, 'SKU003', 'Organic Green Tea', 'Certified organic green tea leaves with a delicate flavor and aroma.', '2025-06-30', 200, '2025-06-30 23:59:59', NULL, NULL),
-(4, 'SKU004', 'Whole Grain Bread', 'Nutritious whole grain bread made with ancient grains and seeds.', '2024-12-31', 80, '2024-12-31 23:59:59', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -132,26 +101,17 @@ CREATE TABLE `sales` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_data`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user_data` (
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `phone_number` varchar(20) NOT NULL
+CREATE TABLE `users` (
+  `fullName` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phoneNumber` varchar(20) DEFAULT NULL,
+  `role` enum('Manager','Employee','Vendor') DEFAULT 'Employee',
+  `vendorID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_data`
---
-
-INSERT INTO `user_data` (`username`, `password`, `role`, `name`, `email`, `phone_number`) VALUES
-('janedoe', '', 'Manager', 'Jane Doe', 'janedoe@example.com', '0987654321'),
-('johndoe', '', 'Rakusens staff', 'John Doe', 'johndoe@example.com', '1234567890'),
-('vendor1', '', 'External Vendor', 'Vendor One', 'vendor1@example.com', '1112223333');
 
 -- --------------------------------------------------------
 
@@ -187,12 +147,6 @@ CREATE TABLE `vendors` (
 --
 
 --
--- Indexes for table `alert_data`
---
-ALTER TABLE `alert_data`
-  ADD PRIMARY KEY (`Alert_ID`);
-
---
 -- Indexes for table `itemrevenue`
 --
 ALTER TABLE `itemrevenue`
@@ -205,28 +159,16 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`orderID`);
 
 --
--- Indexes for table `order_data`
---
-ALTER TABLE `order_data`
-  ADD PRIMARY KEY (`order_id`);
-
---
--- Indexes for table `product_data`
---
-ALTER TABLE `product_data`
-  ADD PRIMARY KEY (`product_id`);
-
---
 -- Indexes for table `sales`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`saleID`);
 
 --
--- Indexes for table `user_data`
+-- Indexes for table `users`
 --
-ALTER TABLE `user_data`
-  ADD PRIMARY KEY (`username`);
+ALTER TABLE `users`
+  ADD KEY `vendorID` (`vendorID`);
 
 --
 -- Indexes for table `vendororders`
@@ -246,28 +188,10 @@ ALTER TABLE `vendors`
 --
 
 --
--- AUTO_INCREMENT for table `alert_data`
---
-ALTER TABLE `alert_data`
-  MODIFY `Alert_ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_data`
---
-ALTER TABLE `order_data`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `product_data`
---
-ALTER TABLE `product_data`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -290,6 +214,12 @@ ALTER TABLE `vendors`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`vendorID`) REFERENCES `vendors` (`vendorID`);
 
 --
 -- Constraints for table `vendororders`
