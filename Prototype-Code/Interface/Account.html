@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rakusen - Account</title>
+<style>
+ body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f2f2;
+        padding-bottom: 50px;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 103px;
+        left: 0;
+        width: 200px;
+        height: calc(100% - 70px);
+        background-color: #ffffff;
+        color: #000000;
+        padding-top: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    }
+
+    .navbar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar ul li {
+        padding: 10px 20px;
+        border-bottom: 1px solid #fff;
+    }
+
+    .navbar ul li:last-child {
+        border-bottom: none;
+    }
+    
+    .navbar ul li a {
+    text-decoration: none; 
+    color: black; 
+}
+
+.navbar ul li a:hover {
+    color: #666; 
+}
+    .dashboard {
+        margin-left: 200px;
+        padding-top: 70px;
+    }
+
+    .content {
+        text-align: center;
+        background-color: #f4f2f2;
+        padding: 20px;
+        border-radius: 5px;
+
+    }
+
+    .top-bar {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 1px solid #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+        max-width: 50px;
+        max-height: 50px;
+    }
+
+    .top-left {
+        padding: 10px;
+    }
+
+    .top-right {
+        padding: 30px;
+        border-radius: 5px
+    }
+
+
+    @media (max-width: 600px) {
+        .top-bar {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .top-right {
+            margin-top: 10px; 
+        }
+        .navbar {
+            top: 120px; 
+        }
+    }
+    
+
+    
+    .name-box {
+        text-align: center;
+        width: calc(30% - 20px); 
+        background-color: #ffffff;
+        padding: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        float: left;
+    }
+
+
+    .email-box {
+        text-align: center;
+        width: calc(30% - 20px); 
+        background-color: #ffffff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        display: inline-block; 
+        float: right
+    
+    }
+    .password-box {
+        text-align: center;
+        width: calc(30% - 20px);
+        background-color: #ffffff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        display: inline-block; 
+        float: left
+    
+    }
+    
+    .contact-box {
+        text-align: center;
+        width: calc(30% - 20px); 
+        background-color: #ffffff;
+        padding: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        float: right; 
+    }
+
+
+.name-box,
+.email-box,
+.password-box,
+.contact-box{
+    width: calc(40% - 20px);
+    height: 240px; 
+    margin: 20px;
+}
+    
+
+    .edit-save-buttons {
+        display: flex;
+        justify-content: center; /* Center the buttons */
+        justify-content:  ;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+        .top-bar {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .top-right {
+            margin-top: 10px; 
+        }
+        .navbar {
+            top: 120px; 
+        }
+        .field-box {
+            width: calc(100% - 40px);
+            margin-right: 0;
+        }
+    }
+
+    .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 0px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    .footer:hover {
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="top-left">
+        <img src="Images\rakusen.png" alt="Company Logo" class="logo">
+    </div>
+    <div class="middle-section">
+        <h1>Rakusen Warehouse</h1>
+    </div>
+    <div class="top-right">
+        <a href="#" style="color: rgb(0, 0, 0);">Contact Us</a>
+    </div>
+</div>
+
+<div class="navbar">
+    <ul>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="Inventory.html">Items</a></li>
+        <li><a href="Orders.html">Orders</a></li>
+        <li><a href="Alerts.html">Alerts</a></li>
+        <li><a href="Reports.html">Reports</a></li>
+        <li><a href="Login.html">Logout</a></li>
+    </ul>
+</div>
+
+<div class="dashboard">
+    <div class="content">
+        <h2>Profile</h2>
+        <p>Welcome</p>
+        <div class="name-box">
+            <h3>Name</h3>
+            <p>User's Name</p>
+            <div class="edit-save-buttons">
+                <button>Edit</button>
+                <button>Save</button>
+            </div>
+        </div>
+        <div class="email-box">
+            <h3>Email</h3>
+            <p>User's Email</p>
+            <div class="edit-save-buttons">
+                <button>Edit</button>
+                <button>Save</button>
+            </div>
+        </div>
+        <div class="password-box">
+            <h3>Password</h3>
+            <p>User's Password</p>
+            <div class="edit-save-buttons">
+                <button>Edit</button>
+                <button>Save</button>
+            </div>
+        </div>
+        <div class="contact-box">
+            <h3>Contact Number</h3>
+            <p>User's Contact Number</p>
+            <div class="edit-save-buttons">
+                <button>Edit</button>
+                <button>Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Rakusen. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
