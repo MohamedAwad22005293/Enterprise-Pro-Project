@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 01:33 AM
+-- Generation Time: Mar 19, 2024 at 10:26 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -91,11 +91,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`productName`, `productCode`, `skuCode`, `productImage`, `productDescription`, `productQuantity`, `price`, `bestBeforeDate`, `orderStatus`) VALUES
 ('Basmati Rice', 'RIC002', 'SKU004', NULL, 'Aromatic and long-grain Basmati rice, 10 lb', 60, '£8.49', '2024-04-29', 'In Stock'),
 ('Eggs (Large)', 'EGG001', 'SKU005', NULL, 'Farm-fresh large eggs, pack of 12', 50, '£3.79', '2024-04-23', 'In Stock'),
-('Ground Beef', 'BEEF001', 'SKU006', NULL, 'Premium quality ground beef, 1 lb', 40, '£6.99', '2024-04-26', 'In Stock'),
-('Orange Juice', 'JUC001', 'SKU007', NULL, 'Freshly squeezed orange juice, 64 oz', 70, '£4.29', '2024-03-25', 'In Stock'),
 ('Sliced Bread', 'BRD001', 'SKU001', NULL, 'Freshly baked sliced white bread', 100, '£2.49', '2024-04-20', 'In Stock'),
-('White Rice', 'RIC001', 'SKU003', NULL, 'Premium quality long-grain white rice, 5 lb', 80, '£5.99', '2024-04-25', 'In Stock'),
-('Whole Wheat Bread', 'BRD002', 'SKU002', NULL, 'Nutritious whole wheat bread made with whole grain flour', 120, '£2.99', '2024-04-21', 'In Stock');
+('White Rice', 'RIC001', 'SKU003', NULL, 'Premium quality long-grain white rice, 5 lb', 80, '£5.99', '2024-04-25', 'In Stock');
 
 -- --------------------------------------------------------
 
@@ -118,20 +115,22 @@ CREATE TABLE `sales` (
 --
 
 CREATE TABLE `users` (
-  `fullName` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `phoneNumber` varchar(20) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
   `role` enum('Manager','Employee','Vendor') DEFAULT 'Employee',
-  `vendorID` int(11) DEFAULT NULL
+  `vendor_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`fullName`, `email`, `password`, `phoneNumber`, `role`, `vendorID`) VALUES
-('Edwards Jackson', 'EdwardsJackson@Gmail.com', '$2y$10$5UeOY8Tw1NXWIDVcPcB/duNq2SuIcIbN97juF85uoMnAPkxdGIxqC', '07263527338', 'Manager', NULL);
+INSERT INTO `users` (`user_id`, `full_name`, `email`, `password`, `phone_number`, `role`, `vendor_id`) VALUES
+(1, 'Jack\r\n', 'Jack@Gmail.com', '$2y$10$utkeYMXSgu85otCHlpE.0OZgp8.6IYEnEHLeD7PXQe5mAIvyUKI..', '07689876890', 'Manager', NULL),
+(0, 'Tom', 'Tom@gmail.com', '$2y$10$3/iDbiRPAFGCuX49oWVNaelRShyZKNGviajqvt9HK/SrMb2vnK8K6', NULL, 'Employee', NULL);
 
 -- --------------------------------------------------------
 
@@ -203,8 +202,8 @@ ALTER TABLE `sales`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`fullName`),
-  ADD KEY `vendorID` (`vendorID`);
+  ADD PRIMARY KEY (`full_name`),
+  ADD KEY `vendorID` (`vendor_id`);
 
 --
 -- Indexes for table `vendororders`
@@ -255,7 +254,7 @@ ALTER TABLE `vendors`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`vendorID`) REFERENCES `vendors` (`vendorID`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`vendor_id`) REFERENCES `vendors` (`vendorID`);
 
 --
 -- Constraints for table `vendororders`
