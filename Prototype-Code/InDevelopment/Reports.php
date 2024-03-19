@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rakusen</title>
+
 <style>
     body {
         margin: 0;
@@ -100,10 +107,10 @@
     
 
     
-    .alerts-box {
+    .piechart-box {
         text-align: center;
         width: calc(30% - 20px); 
-        background-color: #c9c97b;
+        background-color: #60eb60;
         padding: 20px;
         margin-right: 20px;
         margin-bottom: 20px;
@@ -113,10 +120,10 @@
     }
 
 
-    .orders-box {
+    .statisticalgraph-box {
         text-align: center;
         width: calc(30% - 20px); 
-        background-color: #78ce78;
+        background-color: #787fce;
         padding: 20px;
         margin-bottom: 20px;
         border-radius: 5px;
@@ -125,70 +132,26 @@
         float: right
     
     }
-    .processing-box {
+    .filter-box {
         text-align: center;
         width: calc(30% - 20px);
-        background-color: #60eb60;
+        background-color: #0041f7;
         padding: 20px;
         margin-bottom: 20px;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
         display: inline-block; 
-        float: left
+        float: right
+        float: right;
+        margin-left: auto;
+        margin-right: auto; 
     
-    }
     
-    .inventory-box {
-        text-align: center;
-        width: calc(30% - 20px); 
-        background-color: #6f6fd5;
-        padding: 20px;
-        margin-right: 20px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-        float: left; 
-    }
-.inventory-box .search-bar {
-    margin-bottom: 10px;
 }
 
-.inventory-box .search-bar input[type="text"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: calc(100% - 100px); 
-}
-
-.inventory-box .search-bar button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-.inventory-box .search-bar button:hover {
-    background-color: #45a049;
-}
-.stats-box {
-    text-align: center;
-    width: calc(30% - 20px); 
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /
-    display: inline-block; 
-    float: right; 
-}
-
-.alerts-box,
-.orders-box,
-.processing-box,
-.inventory-box,
-.stats-box {
+.piechart-box,
+.statisticalgraph-box,
+.filter-box {
     width: calc(40% - 20px);
     height: 240px; 
     margin: 20px;
@@ -204,21 +167,73 @@
     width: 100%;
     height: 5;
 }
-.footer:hover {
-    display: none;
-}
     
 
    
     @media (max-width: 600px) {
-        .alerts-box {
+        .piechart-box {
             width: calc(100% - 20px); 
             margin-right: 0;
         }
-        .orders-box {
+        .filter-box {
             width: calc(100% - 20px);
         }
     }
 
 
 </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-left">
+            <img src="Images\rakusen.png" alt="Company Logo" class="logo">
+        </div>
+        <div class="middle-section">
+            <h1>Inventory Analysis & Reports</h1>
+        </div>
+        <div class="top-right">
+            <a href="#" style="color: rgb(0, 0, 0);">Contact Us</a>
+        </div>
+    </div>
+    
+    <div class="navbar">
+        <ul>
+            <li><a href="Dashboard.html">Dashboard</a></li>
+            <li><a href="Items.html">Items</a></li>
+            <li><a href="Orders.html">Orders</a></li>
+            <li><a href="Alerts.html">Alerts</a></li>
+            <li><a href="Reports.html">Reports</a></li>
+            <li><a href="Account.html">Account</a></li>
+            <li><a href="Login.html">Logout</a></li>
+        </ul>
+    </div>
+    
+    <div class="dashboard">
+        <div class="content">
+            <h3>Inventory Analysis & Reports Section</h3>
+            <div class="piechart-box">
+                <h3>Products-wise Inventory Value</h3>
+                <p>Display Pie Chart here.</p>
+                <button onclick="window.print()">Print Pie Chart</button>
+            </div>
+            <div class="statisticalgraph-box">
+                <h3>Most Requested Products</h3>
+                <p>Display Statistical Graph here.</p>
+                <button onclick="window.print()">Print Statistical Graph</button>
+            </div>
+            </div>
+            <div class="filter-box">
+                <h3>Item Performance Filter</h3>
+                <p></p>
+                <button onclick="applyFilter()">Apply Filter</button>
+                <button onclick="window.print()">Print Filtered Results</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Rakusen. All rights reserved.</p>
+    </footer>
+    </body>
+    </html>

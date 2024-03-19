@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rakusen - Inventory</title>
+<title>Rakusen - Alerts</title>
 <style>
     body {
         margin: 0;
@@ -188,9 +188,38 @@
     <ul>
         <li><a href="Dashboard.html">Dashboard</a></li>
         <li><a href="Orders.html">Orders</a></li>
-        <li><a href="Alerts.html">Alerts</a></li>
         <li><a href="Reports.html">Reports</a></li>
         <li><a href="Account.html">Account</a></li>
+        <?php 
+            // Check if the user is logged in and retrieve their role from the database
+            if (isset($_SESSION['user_email'])) {
+                // Establish database connection (replace with your connection code)
+                $connection = mysqli_connect($host, $username, $password, $database);
+
+                // Check if connection was successful
+                if ($connection->connect_error) {
+                    die("Connection failed: " . $connection->connect_error);
+                }
+
+                // Retrieve user's role from the database
+                $user_email = $_SESSION['user_email'];
+                $query = "SELECT role FROM users WHERE email = '$user_email'";
+                $result = mysqli_query($connection, $query);
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $user_role = $row['role'];
+                }
+
+                // Close database connection
+                mysqli_close($connection);
+
+                // Check if user is a manager and display the "Manage Users" link
+                if ($user_role == 'Manager') {
+                    echo '<li><a href="Manage_users.php">Manage Users</a></li>';
+                }
+            }
+        ?>
         <li><a href="Login.html">Logout</a></li>
     </ul>
 </div>
