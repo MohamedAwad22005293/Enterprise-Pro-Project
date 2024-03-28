@@ -219,7 +219,62 @@
             </div>
             <div class="statisticalgraph-box">
                 <h3>Most Requested Products</h3>
-                <p>Display Statistical Graph here.</p>
+                <html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+  // Define the x-values (labels) for the chart, representing product names
+  const xValues = ["Rakusen's Matzos Crackers", "Vegan Water Biscuit", "Passover - Matzos", "Chocolate Oaties", "Baked Beans"];
+  
+  // Define the y-values for the chart, representing the number of requests for each product
+  const yValues = [55, 49, 44, 24, 45];
+  
+  // Define the colors for the bars in the chart
+  const barColors = ["red", "green", "blue", "orange", "brown"];
+
+  // Create a new Chart object, specifying the canvas element to render the chart
+  new Chart("myChart", {
+    // Set the type of chart to be a bar chart
+    type: "bar",
+    
+    // Define the data for the chart
+    data: {
+      // Set the labels (x-values) for the chart
+      labels: xValues,
+      
+      // Define datasets (each dataset represents a set of bars in the chart)
+      datasets: [{
+        // Set the background color for each bar
+        backgroundColor: barColors,
+        
+        // Set the data values (y-values) for each bar
+        data: yValues
+      }]
+    },
+    
+    // Set the options for the chart
+    options: {
+      // Configure the legend (in this case, we're hiding it)
+      legend: { display: false },
+      
+      // Configure the title of the chart
+      title: {
+        // Enable the display of the title
+        display: true,
+        
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
+
                 <button onclick="window.print()">Print Statistical Graph</button>
             </div>
             </div>
