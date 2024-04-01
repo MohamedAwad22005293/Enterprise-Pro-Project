@@ -1,0 +1,142 @@
+<style>
+   body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f2f2;
+    }
+
+    .top-bar {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 1px solid #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+        max-width: 50px;
+        max-height: 50px;
+    }
+
+    .top-left {
+        padding: 10px;
+    }
+
+    .top-right {
+        padding: 30px;
+        border-radius: 5px;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 103px;
+        left: 0;
+        width: 200px;
+        height: calc(100% - 70px);
+        background-color: #ffffff;
+        color: #000000;
+        padding-top: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .navbar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar ul li {
+        padding: 10px 20px;
+        border-bottom: 1px solid #fff;
+    }
+
+    .navbar ul li:last-child {
+        border-bottom: none;
+    }
+
+    .navbar ul li a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .navbar ul li a:hover {
+        color: #666;
+    }
+
+    .dashboard {
+        margin-left: 200px;
+        padding-top: 70px;
+    }
+
+    .content {
+        text-align: center;
+        background-color: #f4f2f2;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+   
+    .user-box {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        margin-top: 50px;
+        overflow: hidden;
+    }
+
+    .user-box table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .user-box table th,
+    .user-box table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .user-box table th {
+        background-color: #f2f2f2;
+    }
+
+    .user-box table td.actions {
+        text-align: center;
+    }
+
+    .user-box table td.actions button {
+        padding: 5px 10px;
+        margin-right: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .user-box table td.actions button:hover {
+        background-color: #0056b3;
+    }
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 0px ;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5;
+}
+.footer:hover {
+    display: none;
+}
+    </style>
