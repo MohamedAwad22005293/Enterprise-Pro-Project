@@ -10,25 +10,24 @@
 
     <div class="top-bar">
         <div class="top-left">
-            <img src="Images\rakusen.png" alt="Company Logo" class="logo">
+            <img src="rakusen.png" alt="Company Logo" class="logo">
         </div>
         <div class="middle-section">
             <h1>Inventory Analysis & Reports</h1>
         </div>
         <div class="top-right">
-            <a href="#" style="color: rgb(0, 0, 0);">Contact Us</a>
+            <a href="ContactUsPage.html" style="color: rgb(0, 0, 0);">Contact Us</a>
         </div>
     </div>
     
     <div class="navbar">
         <ul>
-            <li><a href="Dashboard.html">Dashboard</a></li>
-            <li><a href="Items.html">Items</a></li>
-            <li><a href="Orders.html">Orders</a></li>
-            <li><a href="Alerts.html">Alerts</a></li>
-            <li><a href="Reports.html">Reports</a></li>
-            <li><a href="Account.html">Account</a></li>
-            <li><a href="Login.html">Logout</a></li>
+            <li><a href="Dashboard.php">Dashboard</a></li>
+            <li><a href="Inventory.php">Inventory</a></li>
+            <li><a href="Orders.php">Orders</a></li>
+            <li><a href="Alerts.php">Alerts</a></li>
+            <li><a href="AccountPage.php">Account</a></li>
+            <li><a href="Logout.php.">Logout</a></li>
         </ul>
     </div>
     

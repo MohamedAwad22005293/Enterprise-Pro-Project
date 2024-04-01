@@ -39,7 +39,7 @@ if ($connection->connect_error) {
         <h1>Rakusen Warehouse</h1>
     </div>
     <div class="top-right">
-        <a href="#" style="color: rgb(0, 0, 0);">Contact Us</a>
+        <a href="ContactUsPage.html" style="color: rgb(0, 0, 0);">Contact Us</a>
     </div>
 </div>
 

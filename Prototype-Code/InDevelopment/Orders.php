@@ -39,14 +39,14 @@ if ($connection->connect_error) {
         <h1>Rakusen Warehouse</h1>
     </div>
     <div class="top-right">
-        <a href="#" style="color: rgb(0, 0, 0);">Contact Us</a>
+        <a href="ContactUsPage.html" style="color: rgb(0, 0, 0);">Contact Us</a>
     </div>
 </div>
 
 <div class="navbar">
     <ul>
         <li><a href="Dashboard.php">Dashboard</a></li>
-        <li><a href="Inventory.php">Items</a></li>
+        <li><a href="Inventory.php">Inventory</a></li>
         <li><a href="Alerts.php">Alerts</a></li>
         <li><a href="Reports.php">Reports</a></li>
         <li><a href="AccountPage.php">Account</a></li>

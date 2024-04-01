@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user'])) {
         <h1>Rakusen Warehouse</h1>
     </div>
     <div class="top-right">
-        <a href="#" style="color: rgb(0, 0, 0);">Contact Us</a>
+        <a href="ContactUsPage.html" style="color: rgb(0, 0, 0);">Contact Us</a>
     </div>
 </div>
 <div class="dashboard">
@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user'])) {
 <div class="navbar">
     <ul>
         <li><a href="Dashboard.php">Dashboard</a></li>
-        <li><a href="Inventory.php">Items</a></li>
+        <li><a href="Inventory.php">Inventory</a></li>
         <li><a href="Alerts.php">Alerts</a></li>
         <li><a href="Orders.php">Orders</a></li>
         <li><a href="Reports.php">Reports</a></li>
