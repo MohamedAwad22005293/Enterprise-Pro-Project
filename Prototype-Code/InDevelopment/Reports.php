@@ -153,7 +153,7 @@
 .statisticalgraph-box,
 .filter-box {
     width: calc(40% - 20px);
-    height: 240px; 
+    height: 400px; 
     margin: 20px;
 }
 
@@ -214,81 +214,75 @@
             <h3>Inventory Analysis & Reports Section</h3>
             <div class="piechart-box">
                 <h3>Products-wise Inventory Value</h3>
-                <p>Display Pie Chart here.</p>
+                <canvas id="pieChart" width="400" height="400"></canvas>
                 <button onclick="window.print()">Print Pie Chart</button>
             </div>
+
             <div class="statisticalgraph-box">
                 <h3>Most Requested Products</h3>
-                <html>
-<head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-</head>
-<body>
-
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-
-<script>
-  // Define the x-values (labels) for the chart, representing product names
-  const xValues = ["Rakusen's Matzos Crackers", "Vegan Water Biscuit", "Passover - Matzos", "Chocolate Oaties", "Baked Beans"];
-  
-  // Define the y-values for the chart, representing the number of requests for each product
-  const yValues = [55, 49, 44, 24, 45];
-  
-  // Define the colors for the bars in the chart
-  const barColors = ["red", "green", "blue", "orange", "brown"];
-
-  // Create a new Chart object, specifying the canvas element to render the chart
-  new Chart("myChart", {
-    // Set the type of chart to be a bar chart
-    type: "bar",
-    
-    // Define the data for the chart
-    data: {
-      // Set the labels (x-values) for the chart
-      labels: xValues,
-      
-      // Define datasets (each dataset represents a set of bars in the chart)
-      datasets: [{
-        // Set the background color for each bar
-        backgroundColor: barColors,
-        
-        // Set the data values (y-values) for each bar
-        data: yValues
-      }]
-    },
-    
-    // Set the options for the chart
-    options: {
-      // Configure the legend (in this case, we're hiding it)
-      legend: { display: false },
-      
-      // Configure the title of the chart
-      title: {
-        // Enable the display of the title
-        display: true,
-        
-      }
-    }
-  });
-</script>
-
-</body>
-</html>
-
+                <canvas id="myChart" style="width:100%;max-width:600px;height:400px"></canvas>
                 <button onclick="window.print()">Print Statistical Graph</button>
             </div>
-            </div>
+
             <div class="filter-box">
                 <h3>Item Performance Filter</h3>
                 <p></p>
                 <button onclick="applyFilter()">Apply Filter</button>
                 <button onclick="window.print()">Print Filtered Results</button>
             </div>
-            </div>
         </div>
     </div>
+    
     <footer class="footer">
         <p>&copy; 2024 Rakusen. All rights reserved.</p>
     </footer>
-    </body>
-    </html>
+
+<!-- Chart.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+<script>
+// Data for the pie chart
+const pieChartLabels = ["Rakusen's Matzos Crackers", "Vegan Water Biscuit", "Passover - Matzos", "Chocolate Oaties", "Baked Beans"];
+const pieChartData = [200, 150, 180, 120, 170]; // Example data for inventory value
+
+// Pie chart configuration
+new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+        labels: pieChartLabels,
+        datasets: [{
+            label: 'Inventory Value',
+            data: pieChartData,
+            backgroundColor: ['red', 'green', 'blue', 'orange', 'brown']
+        }]
+    },
+    options: {
+        legend: { display: true, position: 'bottom' },
+        title: { display: true, text: 'Products-wise Inventory Value' }
+    }
+});
+
+// Data for the bar chart
+const xValues = ["Rakusen's Matzos Crackers", "Vegan Water Biscuit", "Passover - Matzos", "Chocolate Oaties", "Baked Beans"];
+const yValues = [55, 49, 44, 24, 45];
+const barColors = ["red", "green", "blue", "orange", "brown"];
+
+// Bar chart configuration
+new Chart(document.getElementById('myChart'), {
+    type: 'bar',
+    data: {
+        labels: xValues,
+        datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+        }]
+    },
+    options: {
+        legend: { display: false },
+        title: { display: true, text: 'Most Requested Products' }
+    }
+});
+</script>
+
+</body>
+</html>
