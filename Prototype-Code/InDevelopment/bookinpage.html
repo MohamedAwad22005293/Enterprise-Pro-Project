@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Booking Page for Managers</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .container {
+        width: 70%;
+        max-width: 500px;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    form {
+        display: grid;
+        grid-gap: 10px;
+    }
+    label {
+        font-weight: bold;
+        color: #666;
+    }
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #4CAF50;
+        outline: none;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 14px;
+        color: #666;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Product Booking (Manager's View)</h2>
+    <form action="#" method="post">
+        <label for="product">Select Product:</label>
+        <select name="product" id="product">
+            <option value="Aromatic and long-grain Basmati rice">Aromatic and long-grain Basmati rice</option>
+            <option value="Eggs (Large)">Eggs (Large)</option>
+            <option value="Sliced Bread">Sliced Bread</option>
+            <option value="White Rice">White Rice</option>
+            <option value="Milk">Milk</option>
+            <option value="Butter">Butter</option>
+            <option value="Sugar">Sugar</option>
+            <option value="Flour">Flour</option>
+            <option value="Salt">Salt</option>
+           
+        </select>
+        <label for="quantity">Quantity:</label>
+        <input type="text" id="quantity" name="quantity" placeholder="Enter quantity...">
+        <label for="best_before">Best Before:</label>
+        <input type="date" id="best_before" name="best_before">
+        <label for="sku">SKU Code:</label>
+        <input type="text" id="sku" name="sku" placeholder="Enter SKU code...">
+        <label for="date">Booking Date:</label>
+        <input type="date" id="date" name="date">
+        <label for="customer_name">Customer Name:</label>
+        <input type="text" id="customer_name" name="customer_name" placeholder="Enter customer's name...">
+        <label for="customer_email">Customer Email:</label>
+        <input type="email" id="customer_email" name="customer_email" placeholder="Enter customer's email...">
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" placeholder="Enter any additional notes..."></textarea>
+        <input type="submit" value="Book">
+    </form>
+    <div class="footer">
+        &copy; 2024 Rakusen. All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
