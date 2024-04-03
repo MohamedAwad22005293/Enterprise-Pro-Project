@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rakusen</title>
 
-<!-- CSS styles -->
 <style>
-    
     body {
         margin: 0;
         padding: 0;
@@ -15,7 +13,6 @@
         background-color: #f4f2f2;
     }
 
-    /* Navbar styles */
     .navbar {
         position: fixed;
         top: 103px;
@@ -28,7 +25,6 @@
         box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
     }
 
-    /* Navbar list styles */
     .navbar ul {
         list-style-type: none;
         padding: 0;
@@ -49,26 +45,22 @@
     color: black; 
 }
 
-/* Navbar link hover effect */
 .navbar ul li a:hover {
     color: #666; 
 }
-
-    /* Dashboard content container */
     .dashboard {
         margin-left: 200px;
         padding-top: 70px;
     }
 
-    /* Content styling */
     .content {
         text-align: center;
         background-color: #f4f2f2;
         padding: 20px;
         border-radius: 5px;
+
     }
 
-    /* Top bar styling */
     .top-bar {
         background-color: #ffffff;
         color: #000000;
@@ -84,24 +76,21 @@
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    /* Logo styling */
     .logo {
         max-width: 50px;
         max-height: 50px;
     }
 
-    /* Top left section styling */
     .top-left {
         padding: 10px;
     }
 
-    /* Top right section styling */
     .top-right {
         padding: 30px;
         border-radius: 5px
     }
 
-    /* Responsive styles for smaller screens */
+
     @media (max-width: 600px) {
         .top-bar {
             flex-direction: column;
@@ -116,7 +105,8 @@
         }
     }
     
-    /* Styling for pie chart box */
+
+    
     .piechart-box {
         text-align: center;
         width: calc(30% - 20px); 
@@ -129,7 +119,7 @@
         float: left;
     }
 
-    /* Styling for statistical graph box */
+
     .statisticalgraph-box {
         text-align: center;
         width: calc(30% - 20px); 
@@ -139,47 +129,47 @@
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
         display: inline-block; 
-        float: right;
+        float: right
+    
     }
-
-    /* Styling for filter box */
     .filter-box {
-    text-align: center;
-    width: calc(30% - 20px);
-    background-color: #0041f7;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    margin-left: auto;
-    margin-right: auto; 
+        text-align: center;
+        width: calc(30% - 20px);
+        background-color: #0041f7;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        display: inline-block; 
+        float: right
+        float: right;
+        margin-left: auto;
+        margin-right: auto; 
+    
+    
 }
 
-    /* Common styling for box elements */
-    .piechart-box,
-    .statisticalgraph-box,
-    .filter-box {
-        width: calc(40% - 20px);
-        height: 400px; 
-        margin: 20px;
-    }
+.piechart-box,
+.statisticalgraph-box,
+.filter-box {
+    width: calc(40% - 20px);
+    height: 400px; 
+    margin: 20px;
+}
 
-    /* Footer styling */
-    .footer {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 10px; /* Adjust padding as needed */
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 50px; /* Set the height with a unit (e.g., pixels) */
-    }
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 0px ;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5;
+}
+    
 
-    /* Responsive styles for smaller screens */
+   
     @media (max-width: 600px) {
         .piechart-box {
             width: calc(100% - 20px); 
@@ -189,6 +179,8 @@
             width: calc(100% - 20px);
         }
     }
+
+
 </style>
 </head>
 <body>
@@ -197,7 +189,7 @@
     <div class="top-bar">
         <!-- Left section with logo -->
         <div class="top-left">
-            <img src="Images\rakusen.png" alt="Company Logo" class="logo">
+            <img src="rakusen.png" alt="Company Logo" class="logo">
         </div>
         <!-- Middle section with title -->
         <div class="middle-section">
@@ -205,20 +197,19 @@
         </div>
         <!-- Right section with contact link -->
         <div class="top-right">
-            <a href="#" style="color: rgb(0, 0, 0);">Contact Us</a>
+            <a href="ContactUsPage.html" style="color: rgb(0, 0, 0);">Contact Us</a>
         </div>
     </div>
     
     <!-- Navbar section -->
     <div class="navbar">
         <ul>
-            <li><a href="Dashboard.html">Dashboard</a></li>
-            <li><a href="Items.html">Items</a></li>
-            <li><a href="Orders.html">Orders</a></li>
-            <li><a href="Alerts.html">Alerts</a></li>
-            <li><a href="Reports.html">Reports</a></li>
-            <li><a href="Account.html">Account</a></li>
-            <li><a href="Login.html">Logout</a></li>
+            <li><a href="Dashboard.php">Dashboard</a></li>
+            <li><a href="Inventory.php">Inventory</a></li>
+            <li><a href="Orders.php">Orders</a></li>
+            <li><a href="Alerts.php">Alerts</a></li>
+            <li><a href="AccountPage.php">Account</a></li>
+            <li><a href="Logout.php.">Logout</a></li>
         </ul>
     </div>
     

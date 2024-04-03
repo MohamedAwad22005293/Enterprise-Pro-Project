@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_email'] = $user['email'];
 
             // Redirect to personal account page
-            header("Location: Account.php");
+            header("Location: Dashboard.php");
             exit();
         } else {
             // Password is incorrect, display error message
