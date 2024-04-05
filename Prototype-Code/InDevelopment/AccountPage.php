@@ -69,6 +69,7 @@ mysqli_close($connection);
         <li><a href="Orders.php">Orders</a></li>
         <li><a href="Alerts.php">Alerts</a></li>
         <li><a href="Reports.php">Reports</a></li>
+        <li><a href="AccountPage.php">Account</a><li>
         <?php 
             // Check if the user is logged in and retrieve their role from the database
             if (isset($_SESSION['user_email'])) {

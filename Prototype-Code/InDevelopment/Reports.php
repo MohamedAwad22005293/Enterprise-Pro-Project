@@ -201,7 +201,7 @@
         </div>
         <!-- Middle section with title -->
         <div class="middle-section">
-            <h1>Inventory Analysis & Reports</h1>
+            <h1>Rakusen Warehouse</h1>
         </div>
         <!-- Right section with contact link -->
         <div class="top-right">
@@ -216,6 +216,7 @@
             <li><a href="Inventory.php">Inventory</a></li>
             <li><a href="Orders.php">Orders</a></li>
             <li><a href="Alerts.php">Alerts</a></li>
+            <li><a href="Reports.php">Reports</a></li>
             <li><a href="AccountPage.php">Account</a></li>
             <li><a href="Logout.php.">Logout</a></li>
         </ul>
