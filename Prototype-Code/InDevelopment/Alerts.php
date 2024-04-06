@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_email'])) {
+    // Redirect to login page if not logged in
+    header("Location: Login.html");
+    exit();
+}
+
+
+// Establish a database connection
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "rwsdb";
+
+$connection = mysqli_connect($host, $username, $password, $database);
+
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +51,7 @@
         <li><a href="Orders.php">Orders</a></li>
         <li><a href="Alerts.php">Alerts</a></li>
         <li><a href="Reports.php">Reports</a></li>
-        <li><a href="AccountPage.php">Account</a><li>
+        <li><a href="AccountPage.php">Account</a></li>
         <?php 
             // Check if the user is logged in and retrieve their role from the database
             if (isset($_SESSION['user_email'])) {
@@ -52,8 +76,9 @@
                 // Close database connection
                 mysqli_close($connection);
 
-                // Check if user is a manager and display the "Manage Users" link
+                // Check if user is a manager and display the "Manage Users" and "Vendor Orders" link
                 if ($user_role == 'Manager') {
+                    echo '<li><a href="VendorItems.php">Vendor Orders</a></li>';
                     echo '<li><a href="Manage_users.php">Manage Users</a></li>';
                 }
             }
