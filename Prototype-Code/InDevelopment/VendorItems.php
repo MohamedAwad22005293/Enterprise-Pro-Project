@@ -83,9 +83,59 @@ if ($connection->connect_error) {
                     echo '<li><a href="VendorItems.php">Vendor Orders</a></li>';
                     echo '<li><a href="Manage_users.php">Manage Users</a></li>';
                 }
+
             }
         ?>
         <li><a href="Logout.php">Logout</a></li>
     </ul>
 </div>
 
+
+<div class = "VItems">
+            <h2>Vendor Orders</h2>
+
+            <?php
+
+            // Check if the user is logged in and retrieve their role from the database
+            if (isset($_SESSION['user_email'])) {
+                // Establish database connection (replace with your connection code)
+                $connection = mysqli_connect($host, $username, $password, $database);
+
+                // Check if connection was successful
+                if ($connection->connect_error) {
+                    die("Connection failed: " . $connection->connect_error);
+                }
+
+                $query = "SELECT * 
+                FROM orders";
+
+                $result = mysqli_query($connection, $query);
+
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    // Output table header
+                    echo "<table>";
+                    echo "<tr><th>Product Name</th><th>Product Code</th><th>SKU Code</th></tr>";
+                
+                    // Output data 
+                    while ($column = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $column['productName'] . "</td>";
+                        echo "<td>" . $column['productCode'] . "</td>";
+                        echo "<td>" . $column['skuCode'] . "</td>";
+                        echo "</tr>";
+                    }
+                
+                    echo "</table>";
+                } else {
+                    echo "No data found.";
+                }
+                
+                // Close database connection
+                mysqli_close($connection);
+            }
+                ?>
+
+
+                </body>
+                </html>

@@ -90,7 +90,7 @@ if ($connection->connect_error) {
 <div class="dashboard">
     <div class="content">
         <h2>Dashboard</h2>
-        <p>Home/Dashboard</p>
+        <p>Homepage</p>
         <div class="alerts-box">
             <h3>Alerts</h3>
             <p>Display alerts here.</p>
