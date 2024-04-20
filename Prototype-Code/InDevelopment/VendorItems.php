@@ -107,7 +107,7 @@ if ($connection->connect_error) {
                 }
 
                 $query = "SELECT * 
-                FROM orders";
+                FROM products";
 
                 $result = mysqli_query($connection, $query);
 
@@ -115,7 +115,7 @@ if ($connection->connect_error) {
                 if ($result && mysqli_num_rows($result) > 0) {
                     // Output table header
                     echo "<table>";
-                    echo "<tr><th>Product Name</th><th>Product Code</th><th>SKU Code</th></tr>";
+                    echo "<tr> <th>Product Name</th> <th>Product Code</th> <th>SKU Code</th> <th>Quantity</th> <th>Unit Price</th> <th>Stock Status</th> </tr>";
                 
                     // Output data 
                     while ($column = mysqli_fetch_assoc($result)) {
@@ -123,6 +123,10 @@ if ($connection->connect_error) {
                         echo "<td>" . $column['productName'] . "</td>";
                         echo "<td>" . $column['productCode'] . "</td>";
                         echo "<td>" . $column['skuCode'] . "</td>";
+                        echo "<td>" . $column['productImage'] . "</td>";
+                        echo "<td>" . $column['productQuantity'] . "</td>";
+                        echo "<td>" . $column['price'] . "</td>";
+                        echo "<td>" . $column['orderStatus'] . "</td>";
                         echo "</tr>";
                     }
                 
