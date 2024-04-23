@@ -127,6 +127,7 @@ if ($connection->connect_error) {
                         echo "<td>" . $column['productQuantity'] . "</td>";
                         echo "<td>" . $column['price'] . "</td>";
                         echo "<td>" . $column['orderStatus'] . "</td>";
+                        echo "<td><button onclick=\"addToBasket('" . $column['productCode'] . "')\">Add to Basket</button></td>"; // Button to add product to basket
                         echo "</tr>";
                     }
                 
