@@ -28,8 +28,10 @@ if ($connection->connect_error) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rakusen - Vendor Order Page</title>
-<link rel="stylesheet" href="VItemStyle.Css">
+<link rel="stylesheet" href="VItemStyle.css">
 </head>
+
+
 <body>
 
 <div class="top-bar">
