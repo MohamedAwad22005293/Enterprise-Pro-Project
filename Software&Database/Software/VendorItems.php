@@ -142,6 +142,9 @@ if ($connection->connect_error) {
             }
                 ?>
 
-
+        </div>
+        <footer class="footer">
+                <p>&copy; 2024 Rakusen. All rights reserved.</p>
+                </footer>
                 </body>
                 </html>
