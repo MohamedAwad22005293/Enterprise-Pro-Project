@@ -13,16 +13,33 @@
     <form action="#" method="post">
         <label for="product">Select Product:</label>
         <select name="product" id="product">
-            <option value="Aromatic and long-grain Basmati rice">Aromatic and long-grain Basmati rice</option>
-            <option value="Eggs (Large)">Eggs (Large)</option>
-            <option value="Sliced Bread">Sliced Bread</option>
-            <option value="White Rice">White Rice</option>
-            <option value="Milk">Milk</option>
-            <option value="Butter">Butter</option>
-            <option value="Sugar">Sugar</option>
-            <option value="Flour">Flour</option>
-            <option value="Salt">Salt</option>
-           
+            <?php
+            // Database credentials
+            $servername = "localhost"; // or "127.0.0.1"
+            $username = "your_username"; // Your MySQL username
+            $password = "your_password"; // Your MySQL password
+            $database = "rwsdb"; // Name of the database you want to connect to
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $database);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Query to select products
+            $sql = "SELECT productName FROM products";
+            $result = $conn->query($sql);
+
+            // Output data of each row
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . $row['productName'] . "'>" . $row['productName'] . "</option>";
+            }
+
+            // Close connection
+            $conn->close();
+            ?>
         </select>
         <label for="quantity">Quantity:</label>
         <input type="text" id="quantity" name="quantity" placeholder="Enter quantity...">
@@ -41,7 +58,7 @@
         <input type="submit" value="Book">
     </form>
     <div class="footer">
-        &copy; 2024 Rakusen. All rights reserved.
+        &copy; <?php echo date("Y"); ?> Rakusen. All rights reserved.
     </div>
 </div>
 
