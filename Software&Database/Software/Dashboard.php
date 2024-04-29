@@ -40,6 +40,7 @@ if ($connection->connect_error) {
         <h1>Rakusen Warehouse</h1>
     </div>
     <div class="top-right">
+        <a href="BasketPage.html" style="color: rgb(0, 0, 0);">Basket</a>
         <a href="ContactUsPage.html" style="color: rgb(0, 0, 0);">Contact Us</a>
     </div>
 </div>
@@ -51,6 +52,7 @@ if ($connection->connect_error) {
         <li><a href="Orders.php">Orders</a></li>
         <li><a href="Alerts.php">Alerts</a></li>
         <li><a href="Reports.php">Reports</a></li>
+        <li><a href="bookinpage.html">Booking</a></li>
         <li><a href="AccountPage.php">Account</a></li>
         <?php 
             // Check if the user is logged in and retrieve their role from the database
