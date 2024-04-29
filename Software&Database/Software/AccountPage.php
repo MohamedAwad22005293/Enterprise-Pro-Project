@@ -54,10 +54,11 @@ mysqli_close($connection);
     <div class="top-left">
         <img src="rakusen.png" alt="Company Logo" class="logo">
     </div>
-    <div class="middle-section">
+    <div class="middle-section" style="padding-left: 250px;">
         <h1>Rakusen Warehouse</h1>
     </div>
     <div class="top-right">
+        <a href="BasketPage.html" style="color: rgb(0, 0, 0);">Basket</a>
         <a href="ContactUsPage.html" style="color: rgb(0, 0, 0);">Contact Us</a>
     </div>
 </div>
