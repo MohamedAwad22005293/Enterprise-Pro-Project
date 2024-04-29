@@ -94,7 +94,7 @@ color: #666;
 .VItems {
 
     margin-left: 220px; 
-    width:100%; 
+    width: calc(100%-220px); 
 
 table {
     position: relative;

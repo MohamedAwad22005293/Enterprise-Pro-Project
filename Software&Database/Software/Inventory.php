@@ -200,6 +200,11 @@ $connection->close();
 </script>
 
 </body>
+                <footer class="footer">
+                <p>&copy; 2024 Rakusen. All rights reserved.</p>
+                </footer>
+
+
 </html>
 
 <?php
