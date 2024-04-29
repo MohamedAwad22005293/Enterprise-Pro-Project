@@ -131,6 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user'])) {
         <li><a href="Orders.php">Orders</a></li>
         <li><a href="Alerts.php">Alerts</a></li>
         <li><a href="Reports.php">Reports</a></li>
+        <li><a href="BookingPage.php">Booking</a></li>
         <li><a href="AccountPage.php">Account</a></li>
         <?php 
             // Check if the user is logged in and retrieve their role from the database
