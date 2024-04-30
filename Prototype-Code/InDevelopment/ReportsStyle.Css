@@ -112,20 +112,25 @@
     /* Styling for pie chart box */
     .piechart-box {
         text-align: center;
-        width: calc(30% - 20px); 
+        max-width: (33.33% - 40px);
         background-color: #60eb60;
         padding: 20px;
+        margin: 20px auto;
         margin-right: 20px;
         margin-bottom: 20px;
+        border: 1px solid #ccc;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
         float: left;
+        canvas {
+            color: black;
+        }
     }
 
     /* Styling for statistical graph box */
     .statisticalgraph-box {
         text-align: center;
-        width: calc(30% - 20px); 
+        max-width: (33.33% - 40px);
         background-color: #787fce;
         padding: 20px;
         margin-bottom: 20px;
@@ -138,8 +143,8 @@
     /* Styling for filter box */
     .filter-box {
     text-align: center;
-    width: calc(30% - 20px);
-    background-color: #0041f7;
+    max-width: (33.33% - 40px);
+    background-color: #1000f7;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -155,9 +160,9 @@
     .piechart-box,
     .statisticalgraph-box,
     .filter-box {
-        width: calc(40% - 20px);
-        height: 400px; 
-        margin: 20px;
+        max-width: calc(33.33% - 40px);
+    height: 400px;
+    margin: 20px;
     }
 
     /* Footer styling */
@@ -174,12 +179,11 @@
 
     /* Responsive styles for smaller screens */
     @media (max-width: 600px) {
-        .piechart-box {
-            width: calc(100% - 20px); 
-            margin-right: 0;
-        }
+        .piechart-box,
+        .statisticalgraph-box,
         .filter-box {
-            width: calc(100% - 20px);
+            max-width: calc(100% - 40px); 
+            margin: 10px;
         }
     }
 </style>
