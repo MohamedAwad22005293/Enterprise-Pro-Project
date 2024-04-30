@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: skyblue;
+        font-size: 14px;
+      }
+
+      .container {
+        width: 80%;
+        margin: 50px auto;
+      }
+
+      .contactBox {
+        background: #fff;
+        display: flex;
+      }
+
+      .contactLeft {
+        flex-basis: 60%;
+        padding: 40px 60px;
+      }
+
+      .contactRight {
+        flex-basis: 40%;
+        padding: 40px;
+        background: blue;
+        color: #fff;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+      }
+
+      .inputRow {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .inputRow .inputGroup {
+        flex-basis: 45%;
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        outline: none;
+        padding-bottom: 5px;
+      }
+
+      textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        outline: none;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      label {
+        margin-bottom: 6px;
+        display: block;
+        color: blue;
+      }
+      /*The button to send email*/
+      button {
+        background: blue;
+        width: 100px;
+        border: none;
+        outline: none;
+        color: white;
+        height: 35px;
+        border-radius: 30px;
+        margin-top: 20px;
+        box-shadow: 0px 5px 15px 0px rgba(28, 0, 180, 0.3);
+        cursor: pointer;
+      }
+
+      /*separate the heading, moves it up*/
+      .contactLeft h3 {
+        color: black;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+
+      .contactRight h3 {
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+
+      tr td:first-child {
+        padding-right: 20px;
+      }
+
+      tr td {
+        padding-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Contact Us</h1>
+
+      <div class="contactBox">
+        <div class="contactLeft">
+          <h3>Send Your Request</h3>
+          <form>
+            <div class="inputRow">
+              <div class="inputGroup">
+                <label>Name</label>
+                <input type="text" placeholder="Rakusen" />
+              </div>
+              <div class="inputGroup">
+                <label>Phone</label>
+                <input type="text" placeholder="(+44) 0113 278 4821" />
+              </div>
+            </div>
+
+            <div class="inputRow">
+              <div class="inputGroup">
+                <label>Email</label>
+                <input type="email" placeholder="sales@rakusens.com" />
+              </div>
+              <div class="inputGroup">
+                <label>Subject</label>
+                <input type="text" placeholder="Rakusen Booking" />
+              </div>
+            </div>
+            <div>
+              <label>Message</label>
+              <textarea rows="5" placeholder="Your Message..."></textarea>
+            </div>
+            <button type="submit">Send Now</button>
+          </form>
+        </div>
+
+        <!--The company details for contancting-->
+        <div class="contactRight">
+          <h3>Get In Touch</h3>
+          <table>
+            <tr>
+              <td>Email</td>
+              <td>Rakusens@gmail.com</td>
+            </tr>
+
+            <tr>
+              <td>Phone</td>
+              <td>(+44) 0113 278 4821</td>
+            </tr>
+
+            <tr>
+              <td>Address</td>
+              <td>
+                Rakusen House <br />
+                Clayton Wood Rise <br />
+                Ring Road West Park Leeds <br />
+                LS16 6QN
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
