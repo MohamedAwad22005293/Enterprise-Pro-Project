@@ -51,14 +51,44 @@ if ($connection->connect_error) {
     
     <!-- Navbar section -->
     <div class="navbar">
-        <ul>
-            <li><a href="Dashboard.php">Dashboard</a></li>
-            <li><a href="Inventory.php">Inventory</a></li>
-            <li><a href="Orders.php">Orders</a></li>
-            <li><a href="Alerts.php">Alerts</a></li>
-            <li><a href="Reports.php">Reports</a></li>
-            <li><a href="AccountPage.php">Account</a></li>
-            <?php 
+    <ul>
+        
+        
+        
+        
+        <?php 
+            // Check if the user is logged in and retrieve their role from the database
+            if (isset($_SESSION['user_email'])) {
+                // Establish database connection (replace with your connection code)
+                $connection = mysqli_connect($host, $username, $password, $database);
+
+                // Check if connection was successful
+                if ($connection->connect_error) {
+                    die("Connection failed: " . $connection->connect_error);
+                }
+
+                // Retrieve user's role from the database
+                $user_email = $_SESSION['user_email'];
+                $query = "SELECT role FROM users WHERE email = '$user_email'";
+                $result = mysqli_query($connection, $query);
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $user_role = $row['role'];
+                }
+
+                // Close database connection
+                mysqli_close($connection);
+
+                if ($user_role == 'Manager' || $user_role == 'Employee') {
+                    echo '<li><a href="Dashboard.php">Dashboard</a></li>';
+                    echo '<li><a href="Orders.php">Orders</a></li>';
+                    echo '<li><a href="Alerts.php">Alerts</a></li>';
+                    echo '<li><a href="Reports.php">Reports</a></li>';
+                }
+            }
+        ?>
+        <?php 
             // Check if the user is logged in and retrieve their role from the database
             if (isset($_SESSION['user_email'])) {
                 // Establish database connection (replace with your connection code)
@@ -83,15 +113,77 @@ if ($connection->connect_error) {
                 mysqli_close($connection);
 
                 // Check if user is a manager and display the "Manage Users" and "Vendor Orders" link
-                if ($user_role == 'Manager') {
-                    echo '<li><a href="VendorItems.php">Vendor Orders</a></li>';
-                    echo '<li><a href="Manage_users.php">Manage Users</a></li>';
+                if ($user_role == 'Manager' || $user_role == 'Vendor' ||$user_role == 'Employee') {
+                    echo '<li><a href="AccountPage.php">Account</a></li>';
                 }
             }
         ?>
-            <li><a href="Logout.php.">Logout</a></li>
-        </ul>
-    </div>
+        <?php 
+            // Check if the user is logged in and retrieve their role from the database
+            if (isset($_SESSION['user_email'])) {
+                // Establish database connection (replace with your connection code)
+                $connection = mysqli_connect($host, $username, $password, $database);
+
+                // Check if connection was successful
+                if ($connection->connect_error) {
+                    die("Connection failed: " . $connection->connect_error);
+                }
+
+                // Retrieve user's role from the database
+                $user_email = $_SESSION['user_email'];
+                $query = "SELECT role FROM users WHERE email = '$user_email'";
+                $result = mysqli_query($connection, $query);
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $user_role = $row['role'];
+                }
+
+                // Close database connection
+                mysqli_close($connection);
+
+                if ($user_role == 'Manager') {
+                    echo '<li><a href="Manage_users.php">Manage Users</a></li>';
+                    echo '<li><a href="Book_In.php">Book Ingredients</a></li>';
+                    echo '<li><a href="Approval.php">Approve Users</a></li>';
+                    echo '<li><a href="Inventory.php">Inventory</a></li>';
+                }
+            }
+        ?>
+        <?php 
+            // Check if the user is logged in and retrieve their role from the database
+            if (isset($_SESSION['user_email'])) {
+                // Establish database connection (replace with your connection code)
+                $connection = mysqli_connect($host, $username, $password, $database);
+
+                // Check if connection was successful
+                if ($connection->connect_error) {
+                    die("Connection failed: " . $connection->connect_error);
+                }
+
+                // Retrieve user's role from the database
+                $user_email = $_SESSION['user_email'];
+                $query = "SELECT role FROM users WHERE email = '$user_email'";
+                $result = mysqli_query($connection, $query);
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $user_role = $row['role'];
+                }
+
+                // Close database connection
+                mysqli_close($connection);
+
+                if ($user_role == 'Vendor') {
+                    echo '<li><a href="VendorItems.php">Vendor Orders</a></li>';
+                    
+                }
+            }
+        ?>
+        <li><a href="Logout.php">Logout</a></li>
+        
+    </ul>
+</div>
     
     
 
