@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakusens Basket</title>
+    <link rel="stylesheet" href="BasketStyle.Css">
+</head>
+<body>
+    <header class="basket-header">
+        <h1>Your Basket</h1>
+    </header>
+    <main>
+        <table class="basket-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>SKU</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Basket items will be dynamically generated here -->
+                <!-- Sample row -->
+                <tr>
+                    <td>Product Name</td>
+                    <td>SKU123</td>
+                    <td>1</td>
+                    <td>$10.00</td>
+                    <td>$10.00</td>
+                    <td><button>Edit</button><button>Delete</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">Total:</td>
+                    <td id="total-price">$10.00</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <button id="checkout-btn">Proceed to Checkout</button>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Rakusen. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
