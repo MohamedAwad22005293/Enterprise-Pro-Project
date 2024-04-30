@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 10:26 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Apr 30, 2024 at 08:14 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,6 +41,23 @@ CREATE TABLE `alerts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookinorders`
+--
+
+CREATE TABLE `bookinorders` (
+  `order_id` int(11) NOT NULL,
+  `ingredient_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `arrival_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `batch_number` varchar(50) NOT NULL,
+  `expiry_date` date NOT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `itemrevenue`
 --
 
@@ -62,7 +79,7 @@ CREATE TABLE `orders` (
   `productCode` varchar(50) DEFAULT NULL,
   `productQuantity` int(11) DEFAULT NULL,
   `bestBeforeDate` date DEFAULT NULL,
-  `orderStatus` varchar(50) DEFAULT NULL,
+  `orderStatus` enum('Completed','Processing') DEFAULT 'Processing',
   `orderDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -81,7 +98,7 @@ CREATE TABLE `products` (
   `productQuantity` int(11) DEFAULT NULL,
   `price` mediumtext DEFAULT NULL,
   `bestBeforeDate` date DEFAULT NULL,
-  `orderStatus` varchar(50) DEFAULT NULL
+  `orderStatus` enum('In Stock','Out Of Stock') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -89,10 +106,28 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productName`, `productCode`, `skuCode`, `productImage`, `productDescription`, `productQuantity`, `price`, `bestBeforeDate`, `orderStatus`) VALUES
-('Basmati Rice', 'RIC002', 'SKU004', NULL, 'Aromatic and long-grain Basmati rice, 10 lb', 60, '£8.49', '2024-04-29', 'In Stock'),
-('Eggs (Large)', 'EGG001', 'SKU005', NULL, 'Farm-fresh large eggs, pack of 12', 50, '£3.79', '2024-04-23', 'In Stock'),
+('Basmati Rice', 'RIC002', 'SKU004', NULL, 'Aromatic and long-grain Basmati rice, 10 lb', 10, '0', '2024-04-29', 'In Stock'),
 ('Sliced Bread', 'BRD001', 'SKU001', NULL, 'Freshly baked sliced white bread', 100, '£2.49', '2024-04-20', 'In Stock'),
 ('White Rice', 'RIC001', 'SKU003', NULL, 'Premium quality long-grain white rice, 5 lb', 80, '£5.99', '2024-04-25', 'In Stock');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rawingredients`
+--
+
+CREATE TABLE `rawingredients` (
+  `ingredient_id` int(11) NOT NULL,
+  `ingredient_name` varchar(100) NOT NULL,
+  `supplier_name` varchar(100) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `arrival_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `batch_number` varchar(50) NOT NULL,
+  `expiry_date` date NOT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -121,16 +156,17 @@ CREATE TABLE `users` (
   `password` varchar(255) DEFAULT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `role` enum('Manager','Employee','Vendor') DEFAULT 'Employee',
-  `vendor_id` int(11) DEFAULT NULL
+  `vendor_id` int(11) DEFAULT NULL,
+  `approval_status` enum('Pending','Disapproved','Approved') DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `full_name`, `email`, `password`, `phone_number`, `role`, `vendor_id`) VALUES
-(1, 'Jack\r\n', 'Jack@Gmail.com', '$2y$10$utkeYMXSgu85otCHlpE.0OZgp8.6IYEnEHLeD7PXQe5mAIvyUKI..', '07689876890', 'Manager', NULL),
-(0, 'Tom', 'Tom@gmail.com', '$2y$10$3/iDbiRPAFGCuX49oWVNaelRShyZKNGviajqvt9HK/SrMb2vnK8K6', NULL, 'Employee', NULL);
+INSERT INTO `users` (`user_id`, `full_name`, `email`, `password`, `phone_number`, `role`, `vendor_id`, `approval_status`) VALUES
+(1, 'Nam', 'nam@email.com', '$2y$10$Lk58cgGIblxqDX5YD.G.PeBa.2N7unYa5/MfKj7wEWowHD7rGerYq', '', 'Manager', NULL, 'Approved'),
+(2, 'Will Smith', 'Iamlegend@fchrisrock.com', '$2y$10$E8bPLpEMmxgZ9vMnMGlGleB6y/g4.ZJXtoQTZxeqfN6Zngtql/MLS', '07474372247', 'Vendor', 1, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -175,6 +211,13 @@ INSERT INTO `vendors` (`vendorID`, `vendorName`, `vendorEmail`, `vendorPhone`, `
 --
 
 --
+-- Indexes for table `bookinorders`
+--
+ALTER TABLE `bookinorders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `ingredient_id` (`ingredient_id`);
+
+--
 -- Indexes for table `itemrevenue`
 --
 ALTER TABLE `itemrevenue`
@@ -193,6 +236,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`productName`);
 
 --
+-- Indexes for table `rawingredients`
+--
+ALTER TABLE `rawingredients`
+  ADD PRIMARY KEY (`ingredient_id`);
+
+--
 -- Indexes for table `sales`
 --
 ALTER TABLE `sales`
@@ -202,7 +251,7 @@ ALTER TABLE `sales`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`full_name`),
+  ADD PRIMARY KEY (`user_id`),
   ADD KEY `vendorID` (`vendor_id`);
 
 --
@@ -223,16 +272,34 @@ ALTER TABLE `vendors`
 --
 
 --
+-- AUTO_INCREMENT for table `bookinorders`
+--
+ALTER TABLE `bookinorders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `rawingredients`
+--
+ALTER TABLE `rawingredients`
+  MODIFY `ingredient_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
   MODIFY `saleID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `vendororders`
@@ -249,6 +316,12 @@ ALTER TABLE `vendors`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `bookinorders`
+--
+ALTER TABLE `bookinorders`
+  ADD CONSTRAINT `bookinorders_ibfk_1` FOREIGN KEY (`ingredient_id`) REFERENCES `rawingredients` (`ingredient_id`);
 
 --
 -- Constraints for table `users`

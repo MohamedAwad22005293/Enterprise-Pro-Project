@@ -149,8 +149,6 @@ if ($connection->connect_error) {
 
 <!-- Chart.js library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-
-<!-- JavaScript code -->
 <script>
 // Data for the pie chart
 const pieChartLabels = ["Rakusen's Matzos Crackers", "Vegan Water Biscuit", "Passover - Matzos", "Chocolate Oaties", "Baked Beans"];

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rakusen - Register</title>
+  <link rel="stylesheet" href="RegisterStyle.Css">
+</head>
+<body>
+  <img src="rakusen2.png" alt="Logo" class="logo">
+  <div class="container">
+    <h2>Register</h2>
+    <form action="register.php" method="POST" id="registerForm">
+      <input type="text" name="fullName" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Enter Password" required>
+      <input type="password" name="confirm_password" placeholder="Enter Password Again" required>
+      <input type="submit" value="Register" id="registerButton">
+    </form>
+    <p class="already-have-account">Already have an account? <a href="Login.html">Login</a></p>
+    <p class="already-have-account">Work for a vendor company?<a href="VendorRegister.html">Register here</a></p>
+  </div>
+  <footer class="footer">
+    <p>&copy; 2024 Rakusen. All rights reserved.</p>
+  </footer>
+
+  
+</body>
+</html>
