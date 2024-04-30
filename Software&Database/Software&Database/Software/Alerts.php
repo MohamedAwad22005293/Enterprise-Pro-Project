@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_email'])) {
     exit();
 }
 
-
 // Establish a database connection
 $host = "localhost";
 $username = "root";
@@ -20,15 +19,37 @@ $connection = mysqli_connect($host, $username, $password, $database);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
-?>
 
+// Retrieve form data
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $itemName = $_POST['itemName'];
+    $itemCode = $_POST['itemCode'];
+    $itemDescription = $_POST['itemDescription'];
+    $itemPrice = $_POST['itemPrice'];
+    $itemStatus = $_POST['itemStatus'];
+    $itemQuantity = $_POST['itemQuantity'];
+    $itemBestBefore = $_POST['itemBestBefore'];
+
+    // SQL query to insert data into the database
+    $sql = "INSERT INTO products (productName, productCode, productDescription, price, productQuantity, bestBeforeDate, orderStatus)
+            VALUES ('$itemName', '$itemCode', '$itemDescription', '$itemPrice', '$itemQuantity', '$itemBestBefore', '$itemStatus')";
+
+    if ($connection->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $connection->error;
+    }
+}
+
+$connection->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rakusen - Alerts</title>
-<link rel="stylesheet" href="AlertsStyle.Css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakusen - Inventory</title>
+    <link rel="stylesheet" href="InventoryStyle.Css">
 </head>
 <body>
 
@@ -46,46 +67,16 @@ if ($connection->connect_error) {
 
 <div class="navbar">
     <ul>
-        
-        
-        
-        
+        <li><a href="Dashboard.php">Dashboard</a></li>
+        <li><a href="Inventory.php">Inventory</a></li>
+        <li><a href="Orders.php">Orders</a></li>
+        <li><a href="Alerts.php">Alerts</a></li>
+        <li><a href="Reports.php">Reports</a></li>
+        <li><a href="AccountPage.php">Account</a></li>
         <?php 
             // Check if the user is logged in and retrieve their role from the database
             if (isset($_SESSION['user_email'])) {
-                // Establish database connection (replace with your connection code)
-                $connection = mysqli_connect($host, $username, $password, $database);
-
-                // Check if connection was successful
-                if ($connection->connect_error) {
-                    die("Connection failed: " . $connection->connect_error);
-                }
-
-                // Retrieve user's role from the database
-                $user_email = $_SESSION['user_email'];
-                $query = "SELECT role FROM users WHERE email = '$user_email'";
-                $result = mysqli_query($connection, $query);
-
-                if ($result && mysqli_num_rows($result) > 0) {
-                    $row = mysqli_fetch_assoc($result);
-                    $user_role = $row['role'];
-                }
-
-                // Close database connection
-                mysqli_close($connection);
-
-                if ($user_role == 'Manager' || $user_role == 'Employee') {
-                    echo '<li><a href="Dashboard.php">Dashboard</a></li>';
-                    echo '<li><a href="Orders.php">Orders</a></li>';
-                    echo '<li><a href="Alerts.php">Alerts</a></li>';
-                    echo '<li><a href="Reports.php">Reports</a></li>';
-                }
-            }
-        ?>
-        <?php 
-            // Check if the user is logged in and retrieve their role from the database
-            if (isset($_SESSION['user_email'])) {
-                // Establish database connection (replace with your connection code)
+                // Establish database connection
                 $connection = mysqli_connect($host, $username, $password, $database);
 
                 // Check if connection was successful
@@ -107,148 +98,59 @@ if ($connection->connect_error) {
                 mysqli_close($connection);
 
                 // Check if user is a manager and display the "Manage Users" and "Vendor Orders" link
-                if ($user_role == 'Manager' || $user_role == 'Vendor' ||$user_role == 'Employee') {
-                    echo '<li><a href="AccountPage.php">Account</a></li>';
-                }
-            }
-        ?>
-        <?php 
-            // Check if the user is logged in and retrieve their role from the database
-            if (isset($_SESSION['user_email'])) {
-                // Establish database connection (replace with your connection code)
-                $connection = mysqli_connect($host, $username, $password, $database);
-
-                // Check if connection was successful
-                if ($connection->connect_error) {
-                    die("Connection failed: " . $connection->connect_error);
-                }
-
-                // Retrieve user's role from the database
-                $user_email = $_SESSION['user_email'];
-                $query = "SELECT role FROM users WHERE email = '$user_email'";
-                $result = mysqli_query($connection, $query);
-
-                if ($result && mysqli_num_rows($result) > 0) {
-                    $row = mysqli_fetch_assoc($result);
-                    $user_role = $row['role'];
-                }
-
-                // Close database connection
-                mysqli_close($connection);
-
                 if ($user_role == 'Manager') {
-                    echo '<li><a href="Manage_users.php">Manage Users</a></li>';
-                    echo '<li><a href="Book_In.php">Book Ingredients</a></li>';
-                    echo '<li><a href="Approval.php">Approve Users</a></li>';
-                    echo '<li><a href="Inventory.php">Inventory</a></li>';
-                }
-            }
-        ?>
-        <?php 
-            // Check if the user is logged in and retrieve their role from the database
-            if (isset($_SESSION['user_email'])) {
-                // Establish database connection (replace with your connection code)
-                $connection = mysqli_connect($host, $username, $password, $database);
-
-                // Check if connection was successful
-                if ($connection->connect_error) {
-                    die("Connection failed: " . $connection->connect_error);
-                }
-
-                // Retrieve user's role from the database
-                $user_email = $_SESSION['user_email'];
-                $query = "SELECT role FROM users WHERE email = '$user_email'";
-                $result = mysqli_query($connection, $query);
-
-                if ($result && mysqli_num_rows($result) > 0) {
-                    $row = mysqli_fetch_assoc($result);
-                    $user_role = $row['role'];
-                }
-
-                // Close database connection
-                mysqli_close($connection);
-
-                if ($user_role == 'Vendor') {
                     echo '<li><a href="VendorItems.php">Vendor Orders</a></li>';
-                    
+                    echo '<li><a href="Manage_users.php">Manage Users</a></li>';
                 }
             }
         ?>
         <li><a href="Logout.php">Logout</a></li>
-        
     </ul>
 </div>
 
 <div class="dashboard">
     <div class="content">
-        <h2>Alerts</h2>
-
-        <div class="button-group">
-            <button type="button">Data Range</button>
-            <button type="button">Alerts Type</button>
-        </div>
+        <h2>Inventory</h2>
 
         <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button type="button">Search</button>
+            <input type="text" id="nameSearch" placeholder="Search by name">
+            <input type="text" id="codeSearch" placeholder="Search by product code/ID">
         </div>
         
-        <div class="container">
-            <div class="row">
-                <div class="box bold-text">Item Name</div>
-                <div class="box bold-text">SKU Code</div>
-                <div class="box bold-text">Alert Type</div>
-                <div class="box bold-text">Quantity</div>
-                <div class="box bold-text">Updated Count</div>
-                <div class="box bold-text">Best Before Date (BBD)</div>
-            </div>
-            <div class="row">
-                <div class="box">Product 1</div>
-                <div class="box">SKU001</div>
-                <div class="box">Low Stock</div>
-                <div class="box">50</div>
-                <div class="box"></div>
-                <div class="box">2024-03-10</div>
-            </div>
-            <div class="row">
-                <div class="box">Product 1</div>
-                <div class="box">SKU001</div>
-                <div class="box">Low Stock</div>
-                <div class="box">50</div>
-                <div class="box"></div>
-                <div class="box">2024-03-10</div>
-            </div>
-            <div class="row">
-                <div class="box">Product 1</div>
-                <div class="box">SKU001</div>
-                <div class="box">Low Stock</div>
-                <div class="box">50</div>
-                <div class="box"></div>
-                <div class="box">2024-03-10</div>
-            </div>
-            <div class="row">
-                <div class="box">Product 1</div>
-                <div class="box">SKU001</div>
-                <div class="box">Low Stock</div>
-                <div class="box">50</div>
-                <div class="box"></div>
-                <div class="box">2024-03-10</div>
-            </div>
-            <div class="row">
-                <div class="box">Product 1</div>
-                <div class="box">SKU001</div>
-                <div class="box">Low Stock</div>
-                <div class="box">50</div>
-                <div class="box"></div>
-                <div class="box">2024-03-10</div>
-            </div>
+        <button class="add-btn" onclick="showAddForm()">Add New</button>
+        <div class="item-box">
+            <?php
+            // Establish connection
+            $connection = mysqli_connect($host, $username, $password, $database);
+            // Check connection
+            if ($connection->connect_error) {
+                die("Connection failed: " . $connection->connect_error);
+            }
+
+            // Fetch products from the database
+            $sql = "SELECT * FROM alerts";
+            $result = mysqli_query($connection, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                // Output data of each row
+                while($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>" .$row ['productName'] . "</h3>";
+                    echo "<p>Product Code/ID: " . $row['productCode'] . "</p>";
+                    echo "<p>Description: " . $row['productDescription'] . "</p>";
+                    echo "<p>Alertype: " . $row['alertType'] . "</p>";
+                    echo "<p>Quantity: " . $row['productQuantity'] . "</p>";
+                    echo "<p>SKU code: " . $row['skuCode'] . "</p>";
+                    echo "<p>Producrt image: " . $row['productImage'] . "</p>";
+                    echo "<p>Best Before: " . $row['bestBeforeDate'] . "</p>";
+                }
+            } else {
+                echo "0 results";
+            }
+            mysqli_close($connection);
+            ?>
         </div>
     </div>
 </div>
-
-<footer class="footer">
-    <p>&copy; 2024 Rakusen. All rights reserved.</p>
-</footer>
 
 </body>
 </html>
