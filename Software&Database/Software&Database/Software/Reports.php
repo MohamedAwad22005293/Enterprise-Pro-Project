@@ -40,11 +40,12 @@ if ($connection->connect_error) {
             <img src="rakusen.png" alt="Company Logo" class="logo">
         </div>
         <!-- Middle section with title -->
-        <div class="middle-section">
+        <div class="middle-section" style="padding-left: 255px;">
             <h1>Rakusen Warehouse</h1>
         </div>
         <!-- Right section with contact link -->
         <div class="top-right">
+            <a href="Basketpage.html" style="color: rgb(0, 0, 0); margin-right: 15px;">Basket</a>
             <a href="ContactUsPage.html" style="color: rgb(0, 0, 0);">Contact Us</a>
         </div>
     </div>
