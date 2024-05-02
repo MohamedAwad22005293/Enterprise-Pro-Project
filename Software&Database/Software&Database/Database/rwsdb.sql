@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2024 at 08:14 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: May 02, 2024 at 07:25 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -106,7 +106,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productName`, `productCode`, `skuCode`, `productImage`, `productDescription`, `productQuantity`, `price`, `bestBeforeDate`, `orderStatus`) VALUES
-('Basmati Rice', 'RIC002', 'SKU004', NULL, 'Aromatic and long-grain Basmati rice, 10 lb', 10, '0', '2024-04-29', 'In Stock'),
+('Basmati Rice', 'RIC002', 'SKU004', NULL, 'Aromatic and long-grain Basmati rice, 10 lb', 60, '£8.49', '2024-04-29', 'In Stock'),
+('Eggs (Large)', 'EGG001', 'SKU005', NULL, 'Farm-fresh large eggs, pack of 12', 50, '£3.79', '2024-04-23', 'In Stock'),
+('Roti', 'RIC002', 'SKU004', NULL, 'Aromatic and long-grain Basmati rice, 10 lb', 20, '£1.45', '2024-04-29', 'In Stock'),
 ('Sliced Bread', 'BRD001', 'SKU001', NULL, 'Freshly baked sliced white bread', 100, '£2.49', '2024-04-20', 'In Stock'),
 ('White Rice', 'RIC001', 'SKU003', NULL, 'Premium quality long-grain white rice, 5 lb', 80, '£5.99', '2024-04-25', 'In Stock');
 
@@ -165,8 +167,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `full_name`, `email`, `password`, `phone_number`, `role`, `vendor_id`, `approval_status`) VALUES
-(1, 'Nam', 'nam@email.com', '$2y$10$Lk58cgGIblxqDX5YD.G.PeBa.2N7unYa5/MfKj7wEWowHD7rGerYq', '', 'Manager', NULL, 'Approved'),
-(2, 'Will Smith', 'Iamlegend@fchrisrock.com', '$2y$10$E8bPLpEMmxgZ9vMnMGlGleB6y/g4.ZJXtoQTZxeqfN6Zngtql/MLS', '07474372247', 'Vendor', 1, 'Approved');
+(2, 'Smith', 'Smith@gmail.com', '$2y$10$5XsMZ8s1s5xjmiQpBcq1O.ZW3ZACmOUkZs6tFlGldW1fMf91BwQou', '07474372247', 'Vendor', 1, 'Approved'),
+(4, 'james', 'James@Gmail.com', '$2y$10$CBhcFdS3XvKLiL9LZ/KJDeT8CLz9eok48alhKkhmJtwcO.G2M6H/C', '03746272736', 'Manager', NULL, 'Approved'),
+(6, 'user1', 'user1@gmail.com', '$2y$10$3Odxjxl.X5Pko4pG.AF9Mu53sAm..dUSVccXf60HKxioVYDfPWczO', '07354628934', 'Employee', NULL, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -299,7 +302,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `vendororders`
